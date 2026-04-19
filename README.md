@@ -1,2 +1,2 @@
-# TaskMaster
-TaskMaster es un gestor de tareas personales desarrollado con Java y SQL con interfaz web. Permite registrar, organizar y cambiar el estado de tus tareas diarias para lograr una buena organización.
+# 📌 Descripción del Proyecto
+TaskMaster es una aplicación diseñada y desarrollada para la gestión de tareas personales. Su objetivo principal es permitir a los usuarios organizar, clasificar y realizar un seguimiento exhaustivo de sus tareas diarias mediante el cambio de estados. Este proyecto se ha desarrollado de forma progresiva y coordinada como un Proyecto Integrador (PI) , aplicando de manera transversal los conocimientos adquiridos en diversas asignaturas del ciclo formativo
