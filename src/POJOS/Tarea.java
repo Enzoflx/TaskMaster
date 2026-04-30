@@ -53,6 +53,7 @@ public class Tarea {
     // Metodo toString para mostrar las tareas como texto formateado.
     @Override
     public String toString() {
-        return "Tarea " + id + ": " + titulo + " [Estado ID: " + estado + "]";
+        String fLimite = (fechaLimite != null) ? fechaLimite.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) : "Sin fecha";
+        return "Tarea #" + id + " | [" + titulo + "] | Cat: " + categoria + " | Est: " + estado + " | Límite: " + fLimite;
     }
 }
