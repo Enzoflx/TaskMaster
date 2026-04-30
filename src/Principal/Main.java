@@ -27,7 +27,7 @@ public class Main {
                 gestionarMenuAcceso(opcion);
             } else {
                 mostrarMenuFuncionalidades();
-                int opcion = ConsoleReader.readInt(0, 7);
+                int opcion = ConsoleReader.readInt(0, 8);
                 if (opcion == 0) {
                     usuarioLogueado = null;
                     System.out.println("Sesión cerrada.");
@@ -104,6 +104,7 @@ public class Main {
         System.out.println("5. Eliminar una tarea");
         System.out.println("6. Filtrar tareas por categoría");
         System.out.println("7. Ver información de mi perfil");
+        System.out.println("8. Filtrar tareas por estado");
         System.out.println("0. Cerrar sesión");
         System.out.println("----------------------------------------");
         System.out.print("Selecciona una opción: ");
@@ -131,6 +132,9 @@ public class Main {
                 break;
             case 7:
                 verPerfil();
+                break;
+            case 8:
+                filtrarTareasPorEstado();
                 break;
         }
     }
@@ -296,6 +300,26 @@ public class Main {
         System.out.println("Nombre: " + usuarioLogueado.getNombre());
         System.out.println("Email:  " + usuarioLogueado.getEmail());
         System.out.println("ID:     " + usuarioLogueado.getId());
+    }
+
+    private static void filtrarTareasPorEstado() {
+        System.out.println("\nSelecciona Estado para filtrar:");
+        List<Estado> ests = estadoDAO.listarEstados();
+        for (int i = 0; i < ests.size(); i++) {
+            Estado e = ests.get(i);
+            System.out.println(e.getId() + ". " + e.getNombre());
+        }
+        int idEst = ConsoleReader.readInt();
+
+        List<Tarea> tareas = tareaDAO.listarTareasPorEstado(usuarioLogueado.getId(), idEst);
+        if (tareas.isEmpty()) {
+            System.out.println("No se encontraron tareas con ese estado.");
+        } else {
+            for (int i = 0; i < tareas.size(); i++) {
+                Tarea t = tareas.get(i);
+                System.out.println(t);
+            }
+        }
     }
 
     private static LocalDateTime leerFecha() {

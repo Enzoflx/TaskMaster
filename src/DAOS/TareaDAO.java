@@ -121,9 +121,9 @@ public class TareaDAO {
     public boolean actualizar(Tarea tarea) {
         String sql = "UPDATE Tareas SET titulo = ?, descripcion = ?, fecha_limite = ?, estado_id = ?, categoria_id = ?, observaciones = ? WHERE id = ?";
         try (Connection con = DBUtils.getConexion();
-                PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setString(1, tarea.getTitulo());
-            ps.setString(2, tarea.getDescripcion());
+             PreparedStatement ps = con.prepareStatement(sql)) {
+             ps.setString(1, tarea.getTitulo());
+             ps.setString(2, tarea.getDescripcion());
             if (tarea.getFechaLimite() != null) {
                 ps.setTimestamp(3, Timestamp.valueOf(tarea.getFechaLimite()));
             } else {
@@ -145,10 +145,10 @@ public class TareaDAO {
         List<Tarea> lista = new ArrayList<>();
         String sql = "SELECT * FROM Tareas WHERE usuario_propietario_id = ? AND categoria_id = ?";
         try (Connection con = DBUtils.getConexion();
-                PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setInt(1, idUsuario);
-            ps.setInt(2, idCategoria);
-            try (ResultSet rs = ps.executeQuery()) {
+             PreparedStatement ps = con.prepareStatement(sql)) {
+             ps.setInt(1, idUsuario);
+             ps.setInt(2, idCategoria);
+             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     Tarea tarea = new Tarea(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),
                             rs.getTimestamp("fecha_creacion").toLocalDateTime(),
@@ -162,6 +162,34 @@ public class TareaDAO {
             }
         } catch (SQLException e) {
             System.out.println("Error al filtrar tareas: " + e.getMessage());
+        }
+        return lista;
+    }
+
+    // 8. Filtrar tareas por usuario y estado.
+    public List<Tarea> listarTareasPorEstado(int idUsuario, int idEstado) {
+        List<Tarea> lista = new ArrayList<>();
+        String sql = "SELECT * FROM Tareas WHERE usuario_propietario_id = ? AND estado_id = ?";
+
+        try (Connection con = DBUtils.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+             ps.setInt(1, idUsuario);
+             ps.setInt(2, idEstado);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Tarea tarea = new Tarea(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),
+                            rs.getTimestamp("fecha_creacion").toLocalDateTime(),
+                            rs.getTimestamp("fecha_limite") != null ? rs.getTimestamp("fecha_limite").toLocalDateTime()
+                                    : null,
+                            estadoDAO.obtenerPorId(rs.getInt("estado_id")),
+                            usuarioDAO.obtenerPorId(rs.getInt("usuario_propietario_id")),
+                            categoriaDAO.obtenerPorId(rs.getInt("categoria_id")), rs.getString("observaciones"));
+                    lista.add(tarea);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al filtrar tareas por estado: " + e.getMessage());
         }
         return lista;
     }
