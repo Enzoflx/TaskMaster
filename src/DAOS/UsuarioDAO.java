@@ -6,8 +6,8 @@ import java.sql.*;
 
 public class UsuarioDAO {
 
-    // Insertar un usuario en la Base de Datos.
-    public boolean insertar(Usuario usuario) {
+    // Registra un usuario en la Base de Datos.
+    public boolean registro(Usuario usuario) {
         String sql = "INSERT INTO Usuarios (nombre, email, password) VALUES (?, ?, ?)";
         try (Connection con = DBUtils.getConexion();
 
@@ -18,9 +18,27 @@ public class UsuarioDAO {
             return ps.executeUpdate() > 0;
 
         } catch (SQLException e) {
-            System.out.println("Error al insertar usuario: " + e.getMessage());
+            System.out.println("Error al registrar usuario: " + e.getMessage());
             return false;
         }
+    }
+
+    // Login de un usuario.
+    public Usuario login(String email, String password) {
+        String sql = "SELECT * FROM Usuarios WHERE email = ? AND password = ?";
+        try (Connection con = DBUtils.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+             ps.setString(1, email);
+             ps.setString(2, password);
+             try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return new Usuario(rs.getInt("id"), rs.getString("nombre"), rs.getString("email"), rs.getString("password"));
+                }
+             }
+        } catch (SQLException e) {
+            System.out.println("Error al realizar login: " + e.getMessage());
+        }
+        return null;
     }
 
     // Mostrar todos los usuarios.
