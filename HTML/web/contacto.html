@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TasksMaster - Contacto</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --oscuro: #1e2a3a;
+            --acento: #3b5bdb;
+            --fondo: #f0f2f5;
+            --borde: #dde1e7;
+            --texto: #333;
+            --muted: #6b7280;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            color: var(--texto);
+            background: var(--fondo);
+            padding-top: 64px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cabecera {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: var(--oscuro);
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .cabecera-logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .cabecera-nav {
+            display: flex;
+            gap: 6px;
+        }
+
+        .cabecera-nav a {
+            color: #aab0bc;
+            text-decoration: none;
+            font-size: 14px;
+            padding: 6px 14px;
+            border-radius: 4px;
+        }
+
+        .cabecera-nav a:hover {
+            background: rgba(255, 255, 255, 0.07);
+            color: #fff;
+        }
+
+        .cabecera-nav a.activo {
+            background: var(--acento);
+            color: #fff;
+        }
+
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        main {
+            flex: 1;
+            padding: 36px 40px;
+            animation: aparecer 0.35s ease;
+        }
+
+        .barra-acciones {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .titulo-seccion {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--texto);
+        }
+
+        .boton {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            border: 1px solid transparent;
+            font-family: Arial, sans-serif;
+        }
+
+        .boton-primario {
+            background: var(--acento);
+            color: #fff;
+        }
+
+        .boton-primario:hover {
+            opacity: 0.9;
+        }
+
+        .boton-secundario {
+            background: #fff;
+            color: var(--texto);
+            border-color: var(--borde);
+        }
+
+        .boton-secundario:hover {
+            background: var(--fondo);
+        }
+
+        .tarjeta-contacto {
+            background: #fff;
+            border: 1px solid var(--borde);
+            border-radius: 6px;
+            padding: 28px 32px;
+        }
+
+        .descripcion-contacto {
+            font-size: 14px;
+            color: var(--muted);
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .cuadricula-campos {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .campo-completo {
+            grid-column: 1 / -1;
+        }
+
+        .grupo-campo {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .grupo-campo label {
+            font-size: 13px;
+            font-weight: bold;
+            color: var(--texto);
+        }
+
+        .obligatorio {
+            color: #c0392b;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 9px 12px;
+            border: 1px solid var(--borde);
+            border-radius: 4px;
+            font-size: 13px;
+            font-family: Arial, sans-serif;
+            color: var(--texto);
+            background: #fff;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--acento);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .acciones-formulario {
+            display: flex;
+            gap: 8px;
+            margin-top: 20px;
+            padding-top: 18px;
+            border-top: 1px solid var(--borde);
+        }
+
+        footer {
+            background: var(--oscuro);
+            color: #aab0bc;
+            font-size: 13px;
+            text-align: center;
+            padding: 16px 40px;
+        }
+
+        .pie-fila {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        footer a {
+            color: #aab0bc;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .cabecera {
+                padding: 0 20px;
+            }
+
+            main {
+                padding: 24px 20px;
+            }
+
+            .cuadricula-campos {
+                grid-template-columns: 1fr;
+            }
+
+            .campo-completo {
+                grid-column: 1;
+            }
+
+            .pie-fila {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cabecera-nav a {
+                font-size: 12px;
+                padding: 5px 9px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="cabecera">
+        <a href="index.html" class="cabecera-logo">TasksMaster</a>
+        <nav class="cabecera-nav">
+            <a href="index.html">Inicio</a>
+            <a href="contacto.html" class="activo">Contacto</a>
+            <a href="../app/login.html">Acceder</a>
+        </nav>
+    </header>
+    <main>
+        <div class="barra-acciones">
+            <span class="titulo-seccion">Formulario de contacto</span>
+            <a href="index.html" class="boton boton-secundario">Volver al inicio</a>
+        </div>
+        <div class="tarjeta-contacto">
+            <p class="descripcion-contacto">
+                Usa este formulario para ponerte en contacto con el equipo de TasksMaster.
+                Te responderemos en menos de 24 horas.
+            </p>
+            <form action="#" method="post" id="formulario-contacto-web">
+                <div class="cuadricula-campos">
+                    <div class="grupo-campo">
+                        <label for="contacto-nombre">Nombre <span class="obligatorio">*</span></label>
+                        <input type="text" id="contacto-nombre" name="nombre" placeholder="Enzo Berzosa" required>
+                    </div>
+                    <div class="grupo-campo">
+                        <label for="contacto-correo">Correo electrónico <span class="obligatorio">*</span></label>
+                        <input type="email" id="contacto-correo" name="correo" placeholder="enzbermar@alu.edu.gva.es"
+                            required>
+                    </div>
+                    <div class="grupo-campo campo-completo">
+                        <label for="contacto-asunto">Asunto <span class="obligatorio">*</span></label>
+                        <input type="text" id="contacto-asunto" name="asunto" placeholder="Motivo del mensaje" required>
+                    </div>
+                    <div class="grupo-campo campo-completo">
+                        <label for="contacto-mensaje">Mensaje <span class="obligatorio">*</span></label>
+                        <textarea id="contacto-mensaje" name="mensaje" placeholder="Escribe tu mensaje aquí..."
+                            required></textarea>
+                    </div>
+                </div>
+                <div class="acciones-formulario">
+                    <button type="submit" class="boton boton-primario" id="boton-enviar-contacto">Enviar
+                        mensaje</button>
+                    <a href="index.html" class="boton boton-secundario">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <div class="pie-fila">
+            <span>&copy; 2026 &middot; TasksMaster</span>
+            <nav>
+                <a href="index.html">Inicio</a>
+                <a href="contacto.html">Contacto</a>
+                <a href="../app/login.html">Acceder</a>
+            </nav>
+            <span>Proyecto DAM &mdash; Lenguajes de Marcas</span>
+        </div>
+    </footer>
+</body>
+
+</html>

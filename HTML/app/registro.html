@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskMaster - Crear cuenta</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --oscuro: #1e2a3a;
+            --acento: #3b5bdb;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            display: flex;
+            height: 100vh;
+        }
+
+        .panel-decorativo {
+            width: 42%;
+            background: var(--oscuro);
+            padding: 70px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .nombre-aplicacion {
+            color: #fff;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .slogan-aplicacion {
+            color: #aab0bc;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .titulo-pasos {
+            color: #aab0bc;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 14px;
+            opacity: 0.6;
+        }
+
+        .lista-pasos {
+            list-style: none;
+        }
+
+        .lista-pasos li {
+            color: #aab0bc;
+            font-size: 14px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .lista-pasos li:last-child {
+            border-bottom: none;
+        }
+
+        .pie-panel {
+            color: #55627a;
+            font-size: 13px;
+        }
+
+        .panel-formulario {
+            flex: 1;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px;
+            overflow-y: auto;
+        }
+
+        .contenido-formulario {
+            width: 100%;
+            max-width: 480px;
+        }
+
+        .titulo-formulario {
+            font-size: 26px;
+            font-weight: bold;
+            color: #222;
+            margin-bottom: 28px;
+        }
+
+        .fila-dos-columnas {
+            display: flex;
+            gap: 14px;
+        }
+
+        .fila-dos-columnas .grupo-campo {
+            flex: 1;
+        }
+
+        .grupo-campo {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 18px;
+        }
+
+        .grupo-campo label {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .obligatorio {
+            color: #c0392b;
+        }
+
+        .grupo-campo input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .grupo-campo input:focus {
+            outline: none;
+            border-color: var(--acento);
+            background: #fff;
+        }
+
+        .texto-ayuda {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .fila-terminos {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            margin-bottom: 22px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .fila-terminos input {
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .fila-terminos a {
+            color: var(--acento);
+            text-decoration: none;
+        }
+
+        .fila-terminos a:hover {
+            text-decoration: underline;
+        }
+
+        .boton-envio {
+            width: 100%;
+            padding: 13px;
+            background: var(--acento);
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+            cursor: pointer;
+        }
+
+        .boton-envio:hover {
+            opacity: 0.9;
+        }
+
+        .enlace-login {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #888;
+        }
+
+        .enlace-login a {
+            color: var(--acento);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .enlace-login a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 640px) {
+            .panel-decorativo {
+                display: none;
+            }
+
+            .panel-formulario {
+                padding: 30px 20px;
+            }
+
+            .fila-dos-columnas {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="panel-decorativo">
+        <div>
+            <div class="nombre-aplicacion">TasksMaster</div>
+            <p class="slogan-aplicacion">Crea tu cuenta y empieza a gestionar tus tareas hoy mismo.</p>
+            <div class="titulo-pasos">Pasos para empezar</div>
+            <ul class="lista-pasos">
+                <li>— Rellena el formulario con tus datos</li>
+                <li>— Accede a tu panel personal de tareas</li>
+                <li>— Crea, organiza y completa tus objetivos</li>
+            </ul>
+        </div>
+        <div class="pie-panel">TasksMaster v1.0 - Proyecto DAM</div>
+    </div>
+    <div class="panel-formulario">
+        <div class="contenido-formulario">
+            <div class="titulo-formulario">Crear cuenta nueva</div>
+            <form action="login.html" method="get" id="formulario-registro">
+                <div class="fila-dos-columnas">
+                    <div class="grupo-campo">
+                        <label for="nombre">Nombre <span class="obligatorio">*</span></label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Enzo" required>
+                    </div>
+                    <div class="grupo-campo">
+                        <label for="apellidos">Apellidos <span class="obligatorio">*</span></label>
+                        <input type="text" id="apellidos" name="apellidos" placeholder="Berzosa" required>
+                    </div>
+                </div>
+                <div class="grupo-campo">
+                    <label for="correo-electronico">Correo electrónico <span class="obligatorio">*</span></label>
+                    <input type="email" id="correo-electronico" name="correo" placeholder="enzbermar@alu.edu.gva.es"
+                        required>
+                    <span class="texto-ayuda">Usarás este correo para iniciar sesión.</span>
+                </div>
+                <div class="grupo-campo">
+                    <label for="contrasena">Contraseña <span class="obligatorio">*</span></label>
+                    <input type="password" id="contrasena" name="contrasena" placeholder="Mínimo 8 caracteres" required
+                        minlength="8">
+                </div>
+                <div class="grupo-campo">
+                    <label for="confirmar-contrasena">Confirmar contraseña <span class="obligatorio">*</span></label>
+                    <input type="password" id="confirmar-contrasena" name="confirmar_contrasena"
+                        placeholder="Repite tu contraseña" required minlength="8">
+                </div>
+                <div class="fila-terminos">
+                    <input type="checkbox" id="aceptar-terminos" name="terminos" required>
+                    <label for="aceptar-terminos">
+                        He leído y acepto los <a href="#">términos y condiciones</a>
+                        y la <a href="#">política de privacidad</a>
+                    </label>
+                </div>
+                <button type="submit" class="boton-envio" id="boton-registrarse">Crear mi cuenta</button>
+            </form>
+            <div class="enlace-login">
+                Ya tienes cuenta? <a href="login.html">Iniciar sesión</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
