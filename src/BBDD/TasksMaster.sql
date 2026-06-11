@@ -65,9 +65,9 @@ INSERT INTO `Categorias` (`nombre`, `descripcion`) VALUES
 -- --------------------------------------------------------
 -- 4. Insertar Tareas
 -- --------------------------------------------------------
-INSERT INTO `Tareas` (`titulo`, `descripcion`, `fecha_limite`, `estado_id`, `usuario_propietario_id`, `categoria_id`, `observaciones`) VALUES
-('Preparar presentación mensual', 'Crear las diapositivas para la reunión de resultados de ventas.', '2026-03-05 10:00:00', 2, 1, 1, 'Pedirle a marketing los gráficos actualizados.'),
-('Hacer la compra de la semana', 'Comprar verduras, frutas, leche y productos de limpieza.', '2026-02-28 18:00:00', 1, 2, 2, 'No olvidar comprar el detergente para ropa oscura.'),
-('Terminar curso de SQL', 'Completar el módulo de subconsultas y JOINs avanzados.', NULL, 3, 3, 3, 'Conseguido el certificado con nota máxima.'),
-('Pagar el seguro del coche', 'Hacer la transferencia para la renovación anual del seguro.', '2026-03-01 23:59:59', 4, 1, 4, 'Cancelada porque cambié de compañía aseguradora.'),
-('Revisar código de la nueva app', 'Hacer code review de la rama feature/login.', '2026-02-27 15:30:00', 1, 2, 1, NULL);
+INSERT INTO `Tareas` (`titulo`, `descripcion`, `fecha_creacion`, `fecha_limite`, `estado_id`, `usuario_propietario_id`, `categoria_id`, `observaciones`) VALUES
+('Preparar presentación mensual', 'Crear las diapositivas para la reunión de resultados de ventas.', '2026-01-01 00:00:00', '2026-03-05 10:00:00', 2, 1, 1, 'Pedirle a marketing los gráficos actualizados.'),
+('Hacer la compra de la semana', 'Comprar verduras, frutas, leche y productos de limpieza.', '2026-01-01 00:00:00', '2026-02-28 18:00:00', 1, 2, 2, 'No olvidar comprar el detergente para ropa oscura.'),
+('Terminar curso de SQL', 'Completar el módulo de subconsultas y JOINs avanzados.', '2026-01-01 00:00:00', NULL, 3, 3, 3, 'Conseguido el certificado con nota máxima.'),
+('Pagar el seguro del coche', 'Hacer la transferencia para la renovación anual del seguro.', '2026-01-01 00:00:00', '2026-03-01 23:59:59', 4, 1, 4, 'Cancelada porque cambié de compañía aseguradora.'),
+('Revisar código de la nueva app', 'Hacer code review de la rama feature/login.', '2026-01-01 00:00:00', '2026-02-27 15:30:00', 1, 2, 1, NULL);

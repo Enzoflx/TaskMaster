@@ -7,7 +7,22 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+/**
+ * Clase principal de ejecución del sistema TasksMaster.
+ * Proporciona el menú interactivo por consola y gestiona los flujos de acceso,
+ * creación, edición, filtrado y marcado de tareas de los usuarios.
+ * 
+ * @author Enzo Berzosa
+ * @version 1.0
+ */
 public class Main {
+
+    /**
+     * Constructor privado para evitar la instanciación de la clase principal.
+     */
+    private Main() {
+        throw new UnsupportedOperationException("Clase principal");
+    }
     private static UsuarioDAO usuarioDAO = new UsuarioDAO();
     private static TareaDAO tareaDAO = new TareaDAO();
     private static CategoriaDAO categoriaDAO = new CategoriaDAO();
@@ -15,6 +30,11 @@ public class Main {
     private static Usuario usuarioLogueado = null;
     private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
+    /**
+     * Punto de entrada de la aplicación. Ejecuta el bucle principal de control.
+     * 
+     * @param args Argumentos de la línea de comandos (no utilizados).
+     */
     public static void main(String[] args) {
         while (true) {
             if (usuarioLogueado == null) {
@@ -39,12 +59,18 @@ public class Main {
         System.out.println("\n¡Gracias por usar TasksMaster! Hasta pronto.");
     }
 
+    /**
+     * Muestra el mensaje de bienvenida y el encabezado de la aplicación.
+     */
     public static void mostrarBienvenida() {
         System.out.println("\n========================================");
         System.out.println("             TasksMaster                ");
         System.out.println("========================================");
     }
 
+    /**
+     * Muestra las opciones del menú de acceso inicial (Login/Registro/Salir).
+     */
     public static void mostrarMenuAcceso() {
         System.out.println("\n[ MENÚ DE ACCESO ]");
         System.out.println("1. Tengo cuenta (Login)");
@@ -54,6 +80,11 @@ public class Main {
         System.out.print("Selecciona una opción: ");
     }
 
+    /**
+     * Redirecciona a la funcionalidad elegida del menú de acceso.
+     * 
+     * @param opcion La opción numérica seleccionada por el usuario.
+     */
     private static void gestionarMenuAcceso(int opcion) {
         switch (opcion) {
             case 1:
@@ -65,6 +96,9 @@ public class Main {
         }
     }
 
+    /**
+     * Realiza el proceso de login solicitando las credenciales al usuario.
+     */
     private static void login() {
         System.out.println("\n--- LOGIN ---");
         System.out.print("Email: ");
@@ -79,6 +113,9 @@ public class Main {
         }
     }
 
+    /**
+     * Realiza el registro de un nuevo usuario en la base de datos.
+     */
     private static void registro() {
         System.out.println("\n--- REGISTRO ---");
         System.out.print("Nombre: ");
@@ -95,6 +132,9 @@ public class Main {
         }
     }
 
+    /**
+     * Muestra las opciones del menú principal para un usuario autenticado.
+     */
     public static void mostrarMenuFuncionalidades() {
         System.out.println("\n[ MENÚ PRINCIPAL - Usuario: " + usuarioLogueado.getNombre() + " ]");
         System.out.println("1. Ver todas mis tareas");
@@ -110,6 +150,11 @@ public class Main {
         System.out.print("Selecciona una opción: ");
     }
 
+    /**
+     * Redirecciona a la funcionalidad seleccionada en el menú principal.
+     * 
+     * @param opcion La opción numérica seleccionada por el usuario.
+     */
     private static void gestionarMenuFuncionalidades(int opcion) {
         switch (opcion) {
             case 1:
@@ -139,6 +184,9 @@ public class Main {
         }
     }
 
+    /**
+     * Lista todas las tareas pertenecientes al usuario logueado.
+     */
     private static void listarTareas() {
         System.out.println("\n--- MIS TAREAS ---");
         List<Tarea> tareas = tareaDAO.listarTareasPorUsuario(usuarioLogueado.getId());
@@ -152,6 +200,34 @@ public class Main {
         }
     }
 
+    /**
+     * Muestra una lista de categorías numeradas en la consola.
+     * 
+     * @param cats La lista de categorías a mostrar.
+     */
+    private static void mostrarCategorias(List<Categoria> cats) {
+        for (int i = 0; i < cats.size(); i++) {
+            Categoria c = cats.get(i);
+            System.out.println(c.getId() + ". " + c.getNombre());
+        }
+    }
+
+    /**
+     * Muestra una lista de estados numerados en la consola.
+     * 
+     * @param ests La lista de estados a mostrar.
+     */
+    private static void mostrarEstados(List<Estado> ests) {
+        for (int i = 0; i < ests.size(); i++) {
+            Estado e = ests.get(i);
+            System.out.println(e.getId() + ". " + e.getNombre());
+        }
+    }
+
+    /**
+     * Solicita datos al usuario e inserta una nueva tarea en la base de datos.
+     * Controla que la fecha límite no sea anterior a la creación mediante try-catch.
+     */
     private static void crearTarea() {
         System.out.println("\n--- NUEVA TAREA ---");
         System.out.print("Título: ");
@@ -162,33 +238,35 @@ public class Main {
         
         System.out.println("Selecciona Categoría:");
         List<Categoria> cats = categoriaDAO.listarCategorias();
-        for (int i = 0; i < cats.size(); i++) {
-            Categoria c = cats.get(i);
-            System.out.println(c.getId() + ". " + c.getNombre());
-        }
+        mostrarCategorias(cats);
         int idCat = ConsoleReader.readInt();
         Categoria cat = categoriaDAO.obtenerPorId(idCat);
 
         System.out.println("Selecciona Estado:");
         List<Estado> ests = estadoDAO.listarEstados();
-        for (int i = 0; i < ests.size(); i++) {
-            Estado e = ests.get(i);
-            System.out.println(e.getId() + ". " + e.getNombre());
-        }
+        mostrarEstados(ests);
         int idEst = ConsoleReader.readInt();
         Estado est = estadoDAO.obtenerPorId(idEst);
 
         System.out.print("Observaciones: ");
         String obs = ConsoleReader.readString();
 
-        Tarea t = new Tarea(0, titulo, desc, LocalDateTime.now(), fechaLimite, est, usuarioLogueado, cat, obs);
-        if (tareaDAO.insertar(t)) {
-            System.out.println("Tarea creada correctamente.");
-        } else {
-            System.out.println("Error al crear la tarea.");
+        try {
+            Tarea t = new Tarea(0, titulo, desc, LocalDateTime.now(), fechaLimite, est, usuarioLogueado, cat, obs);
+            if (tareaDAO.insertar(t)) {
+                System.out.println("Tarea creada correctamente.");
+            } else {
+                System.out.println("Error al crear la tarea.");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
     }
 
+    /**
+     * Solicita datos al usuario y actualiza los datos de una tarea existente.
+     * Controla la validación de la fecha límite para evitar excepciones.
+     */
     private static void editarTarea() {
         System.out.print("\nIntroduce el ID de la tarea a editar: ");
         int id = ConsoleReader.readInt();
@@ -213,15 +291,17 @@ public class Main {
 
         System.out.println("¿Cambiar fecha límite? (s/n)");
         if (ConsoleReader.readString().equalsIgnoreCase("s")) {
-            t.setFechaLimite(leerFecha());
+            try {
+                t.setFechaLimite(leerFecha());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                System.out.println("No se modificó la fecha límite debido al error.");
+            }
         }
 
         System.out.println("Selecciona Nueva Categoría (0 para no cambiar):");
         List<Categoria> cats = categoriaDAO.listarCategorias();
-        for (int i = 0; i < cats.size(); i++) {
-            Categoria c = cats.get(i);
-            System.out.println(c.getId() + ". " + c.getNombre());
-        }
+        mostrarCategorias(cats);
         int idCat = ConsoleReader.readInt();
         if (idCat != 0) {
             t.setCategoria(categoriaDAO.obtenerPorId(idCat));
@@ -229,10 +309,7 @@ public class Main {
 
         System.out.println("Selecciona Nuevo Estado (0 para no cambiar):");
         List<Estado> ests = estadoDAO.listarEstados();
-        for (int i = 0; i < ests.size(); i++) {
-            Estado e = ests.get(i);
-            System.out.println(e.getId() + ". " + e.getNombre());
-        }
+        mostrarEstados(ests);
         int idEst = ConsoleReader.readInt();
         if (idEst != 0) {
             t.setEstado(estadoDAO.obtenerPorId(idEst));
@@ -245,6 +322,9 @@ public class Main {
         }
     }
 
+    /**
+     * Marca una tarea existente del usuario logueado como completada.
+     */
     private static void completarTarea() {
         System.out.print("\nIntroduce el ID de la tarea a completar: ");
         int id = ConsoleReader.readInt();
@@ -260,6 +340,9 @@ public class Main {
         }
     }
 
+    /**
+     * Elimina una tarea de la base de datos si pertenece al usuario logueado.
+     */
     private static void eliminarTarea() {
         System.out.print("\nIntroduce el ID de la tarea a eliminar: ");
         int id = ConsoleReader.readInt();
@@ -275,13 +358,13 @@ public class Main {
         }
     }
 
+    /**
+     * Filtra y muestra en consola las tareas del usuario logueado según su categoría.
+     */
     private static void filtrarTareas() {
         System.out.println("\nSelecciona Categoría para filtrar:");
         List<Categoria> cats = categoriaDAO.listarCategorias();
-        for (int i = 0; i < cats.size(); i++) {
-            Categoria c = cats.get(i);
-            System.out.println(c.getId() + ". " + c.getNombre());
-        }
+        mostrarCategorias(cats);
         int idCat = ConsoleReader.readInt();
         
         List<Tarea> tareas = tareaDAO.listarTareasPorUsuarioYcategoria(usuarioLogueado.getId(), idCat);
@@ -295,6 +378,9 @@ public class Main {
         }
     }
 
+    /**
+     * Muestra los datos de perfil del usuario que ha iniciado sesión.
+     */
     private static void verPerfil() {
         System.out.println("\n--- MI PERFIL ---");
         System.out.println("Nombre: " + usuarioLogueado.getNombre());
@@ -302,13 +388,13 @@ public class Main {
         System.out.println("ID:     " + usuarioLogueado.getId());
     }
 
+    /**
+     * Filtra y muestra en consola las tareas del usuario logueado según su estado.
+     */
     private static void filtrarTareasPorEstado() {
         System.out.println("\nSelecciona Estado para filtrar:");
         List<Estado> ests = estadoDAO.listarEstados();
-        for (int i = 0; i < ests.size(); i++) {
-            Estado e = ests.get(i);
-            System.out.println(e.getId() + ". " + e.getNombre());
-        }
+        mostrarEstados(ests);
         int idEst = ConsoleReader.readInt();
 
         List<Tarea> tareas = tareaDAO.listarTareasPorEstado(usuarioLogueado.getId(), idEst);
@@ -322,6 +408,11 @@ public class Main {
         }
     }
 
+    /**
+     * Lee y valida una fecha ingresada por el usuario en consola.
+     * 
+     * @return El objeto LocalDateTime ingresado por el usuario; o null si no se ingresó nada o el formato es incorrecto.
+     */
     private static LocalDateTime leerFecha() {
         System.out.print("Fecha límite (yyyy-MM-dd HH:mm) o ENTER para ninguna: ");
         String fechaStr = ConsoleReader.readString();

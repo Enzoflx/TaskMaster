@@ -4,26 +4,48 @@ import POJOS.Usuario;
 import Utilidades.DBUtils;
 import java.sql.*;
 
+/**
+ * Clase de Acceso a Datos (DAO) para realizar operaciones sobre la entidad Usuario.
+ * Permite registrar usuarios, realizar login, listar y buscar usuarios en la base de datos.
+ * 
+ * @author Enzo Berzosa
+ * @version 1.0
+ */
 public class UsuarioDAO {
 
-    // Registra un usuario en la Base de Datos.
+    /**
+     * Constructor por defecto de UsuarioDAO.
+     */
+    public UsuarioDAO() {
+    }
+
+    /**
+     * Registra un nuevo usuario en la base de datos.
+     * 
+     * @param usuario El usuario a registrar.
+     * @return true si el registro fue exitoso; false en caso contrario.
+     */
     public boolean registro(Usuario usuario) {
         String sql = "INSERT INTO Usuarios (nombre, email, password) VALUES (?, ?, ?)";
         try (Connection con = DBUtils.getConexion();
-
              PreparedStatement ps = con.prepareStatement(sql)) {
              ps.setString(1, usuario.getNombre());
              ps.setString(2, usuario.getEmail());
              ps.setString(3, usuario.getPassword());
             return ps.executeUpdate() > 0;
-
         } catch (SQLException e) {
             System.out.println("Error al registrar usuario: " + e.getMessage());
             return false;
         }
     }
 
-    // Login de un usuario.
+    /**
+     * Autentica un usuario validando su dirección de correo electrónico y contraseña.
+     * 
+     * @param email El email del usuario.
+     * @param password La contraseña del usuario.
+     * @return El objeto Usuario autenticado si las credenciales son correctas; null en caso contrario.
+     */
     public Usuario login(String email, String password) {
         String sql = "SELECT * FROM Usuarios WHERE email = ? AND password = ?";
         try (Connection con = DBUtils.getConexion();
@@ -41,7 +63,9 @@ public class UsuarioDAO {
         return null;
     }
 
-    // Mostrar todos los usuarios.
+    /**
+     * Muestra en la consola la lista de todos los usuarios registrados (ID, Nombre y Email).
+     */
     public void mostrarUsuarios() {
         String sql = "SELECT id, nombre, email FROM Usuarios";
         try (Connection con = DBUtils.getConexion();
@@ -57,7 +81,12 @@ public class UsuarioDAO {
         }
     }
 
-    // Muestra el usuario que coincide con una ID concreta.
+    /**
+     * Obtiene un usuario concreto a partir de su identificador único.
+     * 
+     * @param id El identificador único del usuario.
+     * @return El objeto Usuario si existe; null si no se encuentra o hay error.
+     */
     public Usuario obtenerPorId(int id) {
         String sql = "SELECT * FROM Usuarios WHERE id = ?";
         try (Connection con = DBUtils.getConexion();

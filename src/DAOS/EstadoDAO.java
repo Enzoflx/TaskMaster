@@ -6,9 +6,27 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Clase de Acceso a Datos (DAO) para realizar operaciones sobre la entidad Estado.
+ * Permite listar y obtener estados de tareas de la base de datos.
+ * 
+ * @author Enzo Berzosa
+ * @version 1.0
+ */
 public class EstadoDAO {
 
-    // Permite obtener un estado por ID, es muy útil para gestionarlos.
+    /**
+     * Constructor por defecto de EstadoDAO.
+     */
+    public EstadoDAO() {
+    }
+
+    /**
+     * Obtiene un estado concreto por su identificador único.
+     * 
+     * @param id El identificador único del estado.
+     * @return El objeto Estado si existe; null si no se encuentra o hay error.
+     */
     public Estado obtenerPorId(int id) {
         String sql = "SELECT * FROM Estados WHERE id = ?";
         try (Connection con = DBUtils.getConexion();
@@ -25,7 +43,11 @@ public class EstadoDAO {
         return null;
     }
 
-    // Devuelve una lista con todos los estados disponibles.
+    /**
+     * Devuelve una lista con todos los estados disponibles en la base de datos.
+     * 
+     * @return Lista de objetos Estado.
+     */
     public List<Estado> listarEstados() {
         List<Estado> lista = new ArrayList<>();
         String sql = "SELECT * FROM Estados";
