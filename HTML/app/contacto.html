@@ -5,383 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TasksMaster - Contacto</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --oscuro: #1e2a3a;
-            --acento: #3b5bdb;
-            --fondo: #f0f2f5;
-            --borde: #dde1e7;
-            --texto: #333;
-            --muted: #888;
-            --lateral: rgba(255, 255, 255, 0.07);
-        }
-
-        html,
-        body {
-            height: 100%;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            background: var(--fondo);
-        }
-
-        .cabecera {
-            background: var(--oscuro);
-            padding: 12px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-shrink: 0;
-        }
-
-        .cabecera-logo {
-            font-size: 18px;
-            font-weight: bold;
-            color: #fff;
-            text-decoration: none;
-        }
-
-        .cabecera-nav {
-            display: none;
-            gap: 4px;
-            flex-wrap: wrap;
-        }
-
-        .cabecera-nav a {
-            color: #aab0bc;
-            text-decoration: none;
-            font-size: 13px;
-            padding: 5px 10px;
-            border-radius: 4px;
-        }
-
-        .cabecera-nav a:hover {
-            background: var(--lateral);
-            color: #fff;
-        }
-
-        .cabecera-nav a.activo {
-            background: var(--acento);
-            color: #fff;
-        }
-
-        .zona-central {
-            display: flex;
-            flex: 1;
-            overflow: hidden;
-        }
-
-        .barra-lateral {
-            width: 240px;
-            flex-shrink: 0;
-            background: var(--oscuro);
-            display: flex;
-            flex-direction: column;
-            overflow-y: auto;
-            border-right: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .menu-lateral {
-            padding: 10px;
-            flex-shrink: 0;
-        }
-
-        .titulo-seccion-nav {
-            color: #aab0bc;
-            font-size: 10px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 10px 11px 6px;
-            opacity: 0.6;
-        }
-
-        .enlace-menu {
-            display: block;
-            padding: 9px 11px;
-            color: #aab0bc;
-            text-decoration: none;
-            border-radius: 4px;
-            margin-bottom: 3px;
-        }
-
-        .enlace-menu:hover {
-            background: var(--lateral);
-            color: #fff;
-        }
-
-        .enlace-menu.activo {
-            background: var(--acento);
-            color: #fff;
-        }
-
-        .sesion-activa {
-            margin-top: auto;
-            padding: 10px 12px;
-            border-top: 1px solid var(--lateral);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-shrink: 0;
-        }
-
-        .avatar-usuario {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: var(--acento);
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 11px;
-            flex-shrink: 0;
-            position: relative;
-        }
-
-        .nombre-sesion {
-            color: #fff;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        .email-sesion {
-            color: #aab0bc;
-            font-size: 11px;
-        }
-
-        .enlace-salir {
-            color: #aab0bc;
-            text-decoration: none;
-            font-size: 12px;
-            margin-left: auto;
-        }
-
-        .enlace-salir:hover {
-            color: #e74c3c;
-        }
-
-        .contenido-principal {
-            flex: 1;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-        }
-
-        @keyframes aparecer {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .cuerpo-pagina {
-            padding: 22px;
-            flex: 1;
-            animation: aparecer 0.35s ease;
-        }
-
-        .pie-pagina {
-            background: var(--oscuro);
-            color: #aab0bc;
-            font-size: 12px;
-            text-align: center;
-            padding: 10px 20px;
-            flex-shrink: 0;
-        }
-
-        .barra-acciones {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 18px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .titulo-seccion {
-            font-size: 16px;
-            font-weight: bold;
-            color: var(--texto);
-        }
-
-        .boton {
-            display: inline-block;
-            padding: 8px 15px;
-            border-radius: 4px;
-            font-size: 13px;
-            font-weight: bold;
-            cursor: pointer;
-            text-decoration: none;
-            border: 1px solid transparent;
-        }
-
-        .boton-primario {
-            background: var(--acento);
-            color: #fff;
-        }
-
-        .boton-primario:hover {
-            opacity: 0.9;
-        }
-
-        .boton-secundario {
-            background: #fff;
-            color: var(--texto);
-            border-color: var(--borde);
-        }
-
-        .boton-secundario:hover {
-            background: var(--fondo);
-        }
-
-        .tarjeta-contacto {
-            background: #fff;
-            border: 1px solid var(--borde);
-            border-radius: 6px;
-            padding: 28px 32px;
-        }
-
-        .descripcion-contacto {
-            font-size: 14px;
-            color: var(--muted);
-            margin-bottom: 24px;
-            line-height: 1.6;
-        }
-
-        .cuadricula-campos {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-
-        .campo-completo {
-            grid-column: 1 / -1;
-        }
-
-        .grupo-campo {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .grupo-campo label {
-            font-size: 13px;
-            font-weight: bold;
-            color: var(--texto);
-        }
-
-        .obligatorio {
-            color: #c0392b;
-        }
-
-        input,
-        select,
-        textarea {
-            width: 100%;
-            padding: 9px 12px;
-            border: 1px solid var(--borde);
-            border-radius: 4px;
-            font-size: 13px;
-            font-family: Arial, sans-serif;
-            color: var(--texto);
-            background: #fff;
-        }
-
-        input:focus,
-        select:focus,
-        textarea:focus {
-            outline: none;
-            border-color: var(--acento);
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .acciones-formulario {
-            display: flex;
-            gap: 8px;
-            margin-top: 20px;
-            padding-top: 18px;
-            border-top: 1px solid var(--borde);
-        }
-
-        @media (max-width: 768px) {
-
-            html,
-            body {
-                height: auto;
-            }
-
-            body {
-                height: auto;
-                min-height: 100vh;
-            }
-
-            .zona-central {
-                overflow: visible;
-            }
-
-            .contenido-principal {
-                overflow: visible;
-            }
-
-            .barra-lateral {
-                display: none;
-            }
-
-            .cabecera-nav {
-                display: flex;
-            }
-
-            .cuadricula-campos {
-                grid-template-columns: 1fr;
-            }
-
-            .campo-completo {
-                grid-column: 1;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .cuerpo-pagina {
-                padding: 14px;
-                max-width: 100%;
-            }
-
-            .cabecera {
-                padding: 10px 14px;
-                flex-wrap: wrap;
-                gap: 8px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="../css/comun.css">
+    <link rel="stylesheet" href="../css/app.css">
 </head>
 
-<body>
+<body class="dashboard-body">
     <header class="cabecera">
-        <a href="index.html" class="cabecera-logo">TasksMaster</a>
+        <a href="../index.html" class="cabecera-logo">TasksMaster</a>
         <nav class="cabecera-nav">
-            <a href="index.html">Tareas</a>
+            <a href="panel.html">Tareas</a>
             <a href="contacto.html" class="activo">Contacto</a>
             <a href="login.html">Salir</a>
         </nav>
@@ -390,17 +22,19 @@
         <aside class="barra-lateral">
             <nav class="menu-lateral">
                 <div class="titulo-seccion-nav">Menu</div>
-                <a href="index.html" class="enlace-menu">Tareas</a>
+                <a href="panel.html" class="enlace-menu">Tareas</a>
                 <a href="editar.html" class="enlace-menu">Nueva tarea</a>
                 <a href="contacto.html" class="enlace-menu activo">Contacto</a>
             </nav>
             <div class="sesion-activa">
-                <div class="avatar-usuario">EB</div>
-                <div>
-                    <div class="nombre-sesion">Enzo Berzosa</div>
-                    <div class="email-sesion">enzbermar@alu.edu.gva.es</div>
+                <div class="sesion-usuario-info">
+                    <div class="avatar-usuario">EB</div>
+                    <div>
+                        <div class="nombre-sesion">Enzo Berzosa</div>
+                        <div class="email-sesion">enzbermar@alu.edu.gva.es</div>
+                    </div>
                 </div>
-                <a href="login.html" class="enlace-salir">Salir</a>
+                <a href="login.html" class="boton-cerrar-sesion">Cerrar sesión</a>
             </div>
         </aside>
         <main class="contenido-principal">
@@ -436,7 +70,7 @@
                         <div class="acciones-formulario">
                             <button type="submit" class="boton boton-primario" id="boton-enviar-contacto">Enviar
                                 mensaje</button>
-                            <a href="index.html" class="boton boton-secundario">Cancelar</a>
+                            <a href="panel.html" class="boton boton-secundario">Cancelar</a>
                         </div>
                     </form>
                 </div>

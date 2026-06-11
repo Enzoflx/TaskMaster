@@ -1,0 +1,744 @@
+html,
+body {
+    height: 100%;
+}
+
+body.dashboard-body {
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: var(--fondo);
+}
+
+body.auth-body {
+    font-size: 15px;
+    display: flex;
+    height: 100vh;
+    background: #fff;
+}
+
+.cabecera {
+    padding: 12px 20px;
+    flex-shrink: 0;
+}
+
+.cabecera-logo {
+    font-size: 18px;
+}
+
+.cabecera-nav {
+    display: none;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+.cabecera-nav a {
+    font-size: 13px;
+    padding: 5px 10px;
+}
+
+.cabecera-nav a:hover {
+    background: var(--lateral);
+}
+
+.boton {
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.boton-pequeno {
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+.zona-central {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+.barra-lateral {
+    width: 240px;
+    flex-shrink: 0;
+    background: var(--oscuro);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.menu-lateral {
+    padding: 10px;
+    flex-shrink: 0;
+}
+
+.titulo-seccion-nav {
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #aab0bc;
+    opacity: 0.4;
+    padding: 10px 14px 5px;
+    letter-spacing: 0.5px;
+}
+
+.enlace-menu {
+    display: block;
+    color: #aab0bc;
+    text-decoration: none;
+    padding: 10px 14px;
+    border-radius: 4px;
+    font-size: 13.5px;
+    margin-bottom: 2px;
+}
+
+.enlace-menu:hover {
+    background: var(--lateral);
+    color: #fff;
+}
+
+.enlace-menu.activo {
+    background: var(--acento);
+    color: #fff;
+}
+
+.sesion-activa {
+    margin-top: auto;
+    padding: 16px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+    color: #fff;
+}
+
+.sesion-usuario-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.boton-cerrar-sesion {
+    display: block;
+    text-align: center;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: background 0.2s;
+}
+
+.boton-cerrar-sesion:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.avatar-usuario {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--acento);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.nombre-sesion {
+    font-weight: bold;
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 140px;
+}
+
+.email-sesion {
+    font-size: 11.5px;
+    color: #aab0bc;
+    opacity: 0.7;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 140px;
+}
+
+.enlace-salir {
+    display: none;
+    font-size: 12px;
+    color: #ff8787;
+    text-decoration: none;
+    font-weight: bold;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+main.contenido-principal {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.cuerpo-pagina {
+    flex: 1;
+    padding: 24px;
+    overflow-y: auto;
+}
+
+.barra-acciones {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.titulo-seccion {
+    font-size: 18px;
+    font-weight: bold;
+    color: #222;
+}
+
+.pie-pagina {
+    background: var(--oscuro);
+    color: #aab0bc;
+    font-size: 13px;
+    text-align: center;
+    padding: 20px;
+    flex-shrink: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.cuadricula-estadisticas {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.tarjeta-estadistica {
+    flex: 1;
+    background: #fff;
+    border: 1px solid var(--borde);
+    border-radius: 6px;
+    padding: 18px 20px;
+    min-width: 140px;
+}
+
+.valor-estadistica {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--oscuro);
+    margin-bottom: 4px;
+}
+
+.etiqueta-estadistica {
+    font-size: 12px;
+    color: #888;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tarjeta {
+    background: #fff;
+    border: 1px solid var(--borde);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+}
+
+.cabecera-tarjeta {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--borde);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.titulo-tarjeta {
+    font-size: 14.5px;
+    font-weight: bold;
+    color: var(--oscuro);
+}
+
+.barra-filtros {
+    display: flex;
+    gap: 10px;
+}
+
+.entrada-busqueda,
+.selector-filtro {
+    padding: 6px 12px;
+    border: 1px solid var(--borde);
+    border-radius: 4px;
+    font-size: 13px;
+    outline: none;
+    font-family: Arial, sans-serif;
+    color: var(--texto);
+    background: #fff;
+}
+
+.entrada-busqueda:focus,
+.selector-filtro:focus {
+    border-color: var(--acento);
+}
+
+.contenedor-tabla {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th {
+    padding: 12px 20px;
+    background: #f8f9fa;
+    border-bottom: 1px solid var(--borde);
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #555;
+    letter-spacing: 0.5px;
+}
+
+td {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--borde);
+    font-size: 13.5px;
+    color: #444;
+    vertical-align: middle;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+.celda-titulo {
+    font-weight: bold;
+    color: var(--oscuro);
+}
+
+.celda-descripcion {
+    max-width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #666;
+}
+
+.insignia {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 11.5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.insignia-pendiente {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.insignia-progreso {
+    background: #dbeafe;
+    color: #2563eb;
+}
+
+.insignia-completada {
+    background: #d1fae5;
+    color: #059669;
+}
+
+.insignia-cancelada {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.acciones {
+    display: flex;
+    gap: 6px;
+}
+
+.cuadricula-campos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.campo-completo {
+    grid-column: 1 / -1;
+}
+
+.grupo-campo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 15px;
+}
+
+.grupo-campo label {
+    font-size: 13px;
+    font-weight: bold;
+    color: #333;
+}
+
+.obligatorio {
+    color: #c0392b;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1px solid var(--borde);
+    border-radius: 4px;
+    font-size: 13px;
+    font-family: Arial, sans-serif;
+    color: var(--texto);
+    background: #fff;
+}
+
+input[type="checkbox"] {
+    width: auto;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--acento);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.acciones-formulario {
+    display: flex;
+    gap: 8px;
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid var(--borde);
+}
+
+.tarjeta-contacto {
+    background: #fff;
+    border: 1px solid var(--borde);
+    border-radius: 6px;
+    padding: 28px 32px;
+}
+
+.descripcion-contacto {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 24px;
+    line-height: 1.6;
+}
+
+.panel-decorativo {
+    width: 42%;
+    background: var(--oscuro);
+    padding: 70px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.nombre-aplicacion {
+    color: #fff;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.nombre-aplicacion a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.slogan-aplicacion {
+    color: #aab0bc;
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 40px;
+}
+
+.titulo-pasos {
+    color: #aab0bc;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+    opacity: 0.6;
+}
+
+.lista-pasos {
+    list-style: none;
+}
+
+.lista-pasos li {
+    color: #aab0bc;
+    font-size: 14px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.lista-pasos li:last-child {
+    border-bottom: none;
+}
+
+.pie-panel {
+    color: #55627a;
+    font-size: 13px;
+}
+
+.panel-formulario {
+    flex: 1;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 50px;
+    overflow-y: auto;
+}
+
+.contenido-formulario {
+    width: 100%;
+    max-width: 460px;
+}
+
+.titulo-formulario {
+    font-size: 26px;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 28px;
+}
+
+.fila-dos-columnas {
+    display: flex;
+    gap: 14px;
+}
+
+.fila-dos-columnas .grupo-campo {
+    flex: 1;
+}
+
+.texto-ayuda {
+    font-size: 12px;
+    color: #999;
+}
+
+.fila-terminos {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    margin-bottom: 22px;
+    font-size: 12px;
+    color: #555;
+}
+
+.fila-terminos input {
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+.fila-terminos a {
+    color: var(--acento);
+    text-decoration: none;
+}
+
+.fila-terminos a:hover {
+    text-decoration: underline;
+}
+
+.fila-opciones {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    font-size: 14px;
+}
+
+.opcion-recordar {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #555;
+    cursor: pointer;
+}
+
+.enlace-olvide {
+    color: var(--acento);
+    text-decoration: none;
+}
+
+.enlace-olvide:hover {
+    text-decoration: underline;
+}
+
+.boton-envio {
+    width: 100%;
+    padding: 13px;
+    background: var(--acento);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+}
+
+.boton-envio:hover {
+    opacity: 0.9;
+}
+
+.enlace-registro,
+.enlace-login {
+    text-align: center;
+    margin-top: 22px;
+    font-size: 14px;
+    color: #888;
+}
+
+.enlace-registro a,
+.enlace-login a {
+    color: var(--acento);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.enlace-registro a:hover,
+.enlace-login a:hover {
+    text-decoration: underline;
+}
+
+.migas-pan {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 16px;
+}
+
+.migas-pan a {
+    color: var(--acento);
+    text-decoration: none;
+}
+
+.migas-pan a:hover {
+    text-decoration: underline;
+}
+
+.tarjeta-formulario {
+    background: #fff;
+    border: 1px solid var(--borde);
+    border-radius: 6px;
+    padding: 22px 26px;
+}
+
+.acciones-formulario .boton-peligro {
+    margin-left: auto;
+}
+
+@media (max-width: 768px) {
+    html,
+    body {
+        height: auto;
+    }
+
+    body.dashboard-body {
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .zona-central {
+        overflow: visible;
+    }
+
+    .contenido-principal {
+        overflow: visible;
+    }
+
+    .barra-lateral {
+        display: none;
+    }
+
+    .cabecera-nav {
+        display: flex;
+    }
+
+    .cuadricula-campos {
+        grid-template-columns: 1fr;
+    }
+
+    .campo-completo {
+        grid-column: 1;
+    }
+
+    .cuerpo-pagina {
+        padding: 14px;
+    }
+
+    .acciones-formulario .boton-peligro {
+        margin-left: 0;
+    }
+
+    .cabecera {
+        padding: 10px 14px;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .cuadricula-estadisticas {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .tarjeta-estadistica {
+        min-width: 0;
+    }
+}
+
+@media (max-width: 640px) {
+    .panel-decorativo {
+        display: none;
+    }
+
+    .panel-formulario {
+        padding: 30px 20px;
+    }
+
+    .fila-dos-columnas {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .cabecera-logo {
+        font-size: 15px;
+    }
+
+    .barra-acciones {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

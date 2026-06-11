@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TasksMaster - Panel principal</title>
+    <link rel="stylesheet" href="../css/comun.css">
+    <link rel="stylesheet" href="../css/app.css">
+</head>
+
+<body class="dashboard-body">
+    <header class="cabecera">
+        <a href="../index.html" class="cabecera-logo">TasksMaster</a>
+        <nav class="cabecera-nav">
+            <a href="panel.html" class="activo">Tareas</a>
+            <a href="editar.html">Nueva tarea</a>
+            <a href="contacto.html">Contacto</a>
+            <a href="login.html">Salir</a>
+        </nav>
+    </header>
+    <div class="zona-central">
+        <aside class="barra-lateral">
+            <nav class="menu-lateral">
+                <div class="titulo-seccion-nav">Menu</div>
+                <a href="panel.html" class="enlace-menu activo">Tareas</a>
+                <a href="editar.html" class="enlace-menu">Nueva tarea</a>
+                <a href="contacto.html" class="enlace-menu">Contacto</a>
+            </nav>
+            <div class="sesion-activa">
+                <div class="sesion-usuario-info">
+                    <div class="avatar-usuario">EB</div>
+                    <div>
+                        <div class="nombre-sesion">Enzo Berzosa</div>
+                        <div class="email-sesion">enzbermar@alu.edu.gva.es</div>
+                    </div>
+                </div>
+                <a href="login.html" class="boton-cerrar-sesion">Cerrar sesión</a>
+            </div>
+        </aside>
+        <main class="contenido-principal">
+            <div class="cuerpo-pagina">
+                <div class="barra-acciones">
+                    <span class="titulo-seccion">Listado de tareas</span>
+                    <a href="editar.html" class="boton boton-primario">Nueva Tarea</a>
+                </div>
+                <div class="cuadricula-estadisticas">
+                    <div class="tarjeta-estadistica">
+                        <div class="valor-estadistica">0</div>
+                        <div class="etiqueta-estadistica">Pendientes</div>
+                    </div>
+                    <div class="tarjeta-estadistica">
+                        <div class="valor-estadistica">1</div>
+                        <div class="etiqueta-estadistica">En Progreso</div>
+                    </div>
+                    <div class="tarjeta-estadistica">
+                        <div class="valor-estadistica">0</div>
+                        <div class="etiqueta-estadistica">Completadas</div>
+                    </div>
+                    <div class="tarjeta-estadistica">
+                        <div class="valor-estadistica">1</div>
+                        <div class="etiqueta-estadistica">Canceladas</div>
+                    </div>
+                </div>
+                <div class="tarjeta">
+                    <div class="cabecera-tarjeta">
+                        <span class="titulo-tarjeta">Todas las tareas (2)</span>
+                        <div class="barra-filtros">
+                            <input type="text" class="entrada-busqueda" placeholder="Buscar tarea..." id="buscar-tarea">
+                            <select class="selector-filtro" id="filtro-estado">
+                                <option value="">Todos los estados</option>
+                                <option value="pendiente">Pendiente</option>
+                                <option value="progreso">En Progreso</option>
+                                <option value="completada">Completada</option>
+                                <option value="cancelada">Cancelada</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="contenedor-tabla">
+                        <table id="tabla-tareas">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Título</th>
+                                    <th>Descripción</th>
+                                    <th>Estado</th>
+                                    <th>Categoría</th>
+                                    <th>Propietario</th>
+                                    <th>Fecha límite</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td class="celda-titulo">Preparar presentacion mensual</td>
+                                    <td class="celda-descripcion">Crear las diapositivas para la reunion de resultados.
+                                    </td>
+                                    <td><span class="insignia insignia-progreso">En Progreso</span></td>
+                                    <td>Trabajo</td>
+                                    <td>Ana Martinez</td>
+                                    <td>05/03/2026</td>
+                                    <td>
+                                        <div class="acciones">
+                                            <a href="editar.html"
+                                                class="boton boton-secundario boton-pequeno">Editar</a>
+                                            <button class="boton boton-peligro boton-pequeno">Eliminar</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td class="celda-titulo">Pagar el seguro del coche</td>
+                                    <td class="celda-descripcion">Hacer la transferencia para la renovación anual.</td>
+                                    <td><span class="insignia insignia-cancelada">Cancelada</span></td>
+                                    <td>Finanzas</td>
+                                    <td>Ana Martinez</td>
+                                    <td>01/03/2026</td>
+                                    <td>
+                                        <div class="acciones">
+                                            <a href="editar.html"
+                                                class="boton boton-secundario boton-pequeno">Editar</a>
+                                            <button class="boton boton-peligro boton-pequeno">Eliminar</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="pie-pagina">
+        &copy; 2026 &middot; TasksMaster
+    </footer>
+</body>
+
+</html>
